@@ -16,11 +16,12 @@ OCR recognizes text within a digital image
    ```bash
    git clone https://github.com/samrat2k03/Optical-Character-Recognition-.git
    ```
-2. Run sever
-   ```bash
-   yarn start
-   ```
-3. install dependencies:
+2.install dependencies:
    ```bash
    yarn
    ```
+3. Run sever
+   ```bash
+   yarn start
+   ```
+
