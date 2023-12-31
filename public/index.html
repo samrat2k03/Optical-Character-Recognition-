@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class = "h-full bg-black text-white ">
+    <!-- title start -->
+    <div class="text-center">
+        <h1 class="text-5xl md:text-6xl lg:text-7xl">
+            OCR
+        </h1>
+        <p>Basic Optical Character Recognition Software</p>
+    </div>
+    <!-- title end  -->
+    <!-- input box start  -->
+    <div class="flex justify-center mt-20 bg-grey-700">
+        <form action="/ocr" method="post" id="ocrForm" enctype="multipart/form-data">
+            <div class="flex flex-row items-center">
+                <input type="file" name="image" accept="image/*" required>
+                <button type="submit" onclick="perform()" class="rounded bg-red-500 p-2 text-white"> Convert </button>
+            </div>
+        </form>
+    </div>
+    <!-- input box start  -->
+    <!-- output box start  -->
+    <div class="mt-10 flex justify-center">
+        <h4 id="result" class="text-red-500"></h4>
+    </div>
+    <!-- output box end -->
+
+    <!-- javascript starts  -->
+    <script>
+        async function perform() {
+            event.preventDefault();
+            const formOCR = document.getElementById("ocrForm");
+            const form = new FormData(formOCR);
+            const response = await fetch('/ocr', {
+                method:'POST',
+                body: form
+            });
+
+            const result = await response.text();
+            document.getElementById("result").innerText = result;
+        }
+    </script>
+</body>
+</html>

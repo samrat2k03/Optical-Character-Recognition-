@@ -1,0 +1,16 @@
+{
+  "name": "scrapy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Samrat D",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "4.17.1",
+    "multer": "^1.4.5-lts.1",
+    "tesseract.js": "^5.0.4"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  }
+}
