@@ -16,7 +16,7 @@ OCR recognizes text within a digital image
    ```bash
    git clone https://github.com/samrat2k03/Optical-Character-Recognition-.git
    ```
-2.install dependencies:
+2. Install dependencies:
    ```bash
    yarn
    ```
