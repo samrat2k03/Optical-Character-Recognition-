@@ -6,21 +6,21 @@
     <title>OCR</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class = "h-full bg-black text-white ">
+<body class = "min-h-screen bg-black text-white flex flex-col">
     <!-- title start -->
-    <div class="text-center">
+    <div class="text-center items-center">
         <h1 class="text-5xl md:text-6xl lg:text-7xl">
             OCR
         </h1>
-        <p>Basic Optical Character Recognition Software</p>
+        <p class="pt-2 text-center px-2">Basic Optical Character Recognition Software</p>
     </div>
     <!-- title end  -->
     <!-- input box start  -->
     <div class="flex justify-center mt-20 bg-grey-700">
         <form action="/ocr" method="post" id="ocrForm" enctype="multipart/form-data">
-            <div class="flex flex-row items-center">
-                <input type="file" name="image" accept="image/*" required>
-                <button type="submit" onclick="perform()" class="rounded bg-red-500 p-2 text-white"> Convert </button>
+            <div class="flex flex-col items-center justify-center md:flex-row px-5">
+                <input type="file" name="image" accept="image/*" required class="w-[4rem] md:w-full">
+                <button type="submit" onclick="perform()" class="rounded bg-red-500 p-2 text-white mt-5 md:mt-0 "> Convert </button>
             </div>
         </form>
     </div>
@@ -30,20 +30,31 @@
         <h4 id="result" class="text-red-500"></h4>
     </div>
     <!-- output box end -->
-
+    <footer class="mt-auto text-center pb-10">
+        By samrat
+    </footer>
     <!-- javascript starts  -->
     <script>
         async function perform() {
             event.preventDefault();
             const formOCR = document.getElementById("ocrForm");
             const form = new FormData(formOCR);
-            const response = await fetch('/ocr', {
+            document.getElementById("result").innerText = "Loading...";
+            
+            try {
+                const response = await fetch('/ocr', {
                 method:'POST',
                 body: form
             });
-
+            if (!response.ok) {
+                throw new Error(`Server responded with status ${response.status}`);
+            }
             const result = await response.text();
             document.getElementById("result").innerText = result;
+            } catch (error) {
+                document.getElementById("result").innerText = "Error occurred while processing the request.";
+                console.error(error);   
+            }
         }
     </script>
 </body>
